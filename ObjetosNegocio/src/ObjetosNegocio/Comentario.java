@@ -3,13 +3,10 @@ package ObjetosNegocio;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,39 +16,30 @@ import javax.persistence.TemporalType;
  * @author Juan Enrique Solis Perla, ID: 165920
  */
 @Entity
-@Table(name = "posts")
-@Inheritance( strategy = InheritanceType.SINGLE_TABLE )
-@DiscriminatorColumn( name="type" )
-public class Post implements Serializable {
+@Table(name = "comentarios")
+public class Comentario implements Serializable {
+    
+    public Comentario(){
+        
+    }
+
+    public Comentario(Integer id, Date fechaHora, String contenido) {
+        this.id = id;
+        this.fechaHora = fechaHora;
+        this.contenido = contenido;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "fecha_creacion", nullable = false)
-    private Date fechaCreacion;
-    
-    @Column(name = "titulo", nullable = false)
-    private String titulo;
-    
+    @Column(name = "fecha_hora", nullable = false)
+    private Date fechaHora;
+
     @Column(name = "contenido", nullable = false)
     private String contenido;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "fecha_edicion", nullable = false)
-    private Date fechaEdicion;
-    
-    public Post() {
-    }
-
-    public Post(Integer id, Date fechaCreacion, String titulo, String contenido) {
-        this.id = id;
-        this.fechaCreacion = fechaCreacion;
-        this.titulo = titulo;
-        this.contenido = contenido;
-    }
-    
     public Integer getId() {
         return id;
     }
@@ -60,20 +48,12 @@ public class Post implements Serializable {
         this.id = id;
     }
 
-    public Date getFechaCreacion() {
-        return fechaCreacion;
+    public Date getFechaHora() {
+        return fechaHora;
     }
 
-    public void setFechaCreacion(Date fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setFechaHora(Date fechaHora) {
+        this.fechaHora = fechaHora;
     }
 
     public String getContenido() {
@@ -94,10 +74,10 @@ public class Post implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Post)) {
+        if (!(object instanceof Comentario)) {
             return false;
         }
-        Post other = (Post) object;
+        Comentario other = (Comentario) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -106,6 +86,6 @@ public class Post implements Serializable {
 
     @Override
     public String toString() {
-        return "Post{" + "id=" + id + ", fechaCreacion=" + fechaCreacion + ", titulo=" + titulo + ", contenido=" + contenido + '}';
+        return "Comentario{" + "id=" + id + ", fechaHora=" + fechaHora + ", contenido=" + contenido + '}';
     }
 }
