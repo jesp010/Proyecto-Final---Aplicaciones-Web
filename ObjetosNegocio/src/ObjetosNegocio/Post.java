@@ -68,6 +68,14 @@ public class Post implements Serializable {
         this.fechaCreacion = fechaCreacion;
     }
 
+    public Date getFechaEdicion() {
+        return fechaEdicion;
+    }
+
+    public void setFechaEdicion(Date fechaEdicion) {
+        this.fechaEdicion = fechaEdicion;
+    }
+
     public String getTitulo() {
         return titulo;
     }

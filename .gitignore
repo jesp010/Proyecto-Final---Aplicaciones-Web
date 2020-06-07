@@ -1,2 +1,6 @@
 /ObjetosNegocio/dist/
 /ObjetosNegocio/build/
+/RepositorioJPA/nbproject/private/
+/RepositorioJPA/build/
+/FachadaPersistencia/nbproject/private/
+/FactoryFachadaPersistencia/nbproject/private/
