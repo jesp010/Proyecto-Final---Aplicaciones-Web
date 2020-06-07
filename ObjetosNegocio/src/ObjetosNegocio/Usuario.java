@@ -1,21 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ObjetosNegocio;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.Persistence;
 import javax.persistence.Table;
 
@@ -47,6 +46,21 @@ public class Usuario implements Serializable {
     
     @Column(name = "avatar", nullable = false)
     private String avatar;
+    
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<PostComun> postsComunes;
+
+    public Usuario() {
+    }
+
+    public Usuario(String nombreCompleto, String correo, String contrasenia, String telefono, String avatar, List<PostComun> postsComunes) {
+        this.nombreCompleto = nombreCompleto;
+        this.correo = correo;
+        this.contrasenia = contrasenia;
+        this.telefono = telefono;
+        this.avatar = avatar;
+        this.postsComunes = postsComunes;
+    }
     
     public Integer getId() {
         return id;
@@ -96,6 +110,14 @@ public class Usuario implements Serializable {
         this.avatar = avatar;
     }
 
+    public List<PostComun> getPostsComunes() {
+        return postsComunes;
+    }
+
+    public void setPostsComunes(List<PostComun> postsComunes) {
+        this.postsComunes = postsComunes;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -116,24 +138,8 @@ public class Usuario implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" + "id=" + id + ", nombreCompleto=" + nombreCompleto + ", correo=" + correo + ", contrasenia=" + contrasenia + ", telefono=" + telefono + ", avatar=" + avatar + '}';
-    }
-
-    public void persist(Object object) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ObjetosNegocioPU");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        try {
-            em.persist(object);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            em.getTransaction().rollback();
-        } finally {
-            em.close();
-        }
-    }
-    
+//    @Override
+//    public String toString() {
+//        return "Usuario{" + "id=" + id + ", nombreCompleto=" + nombreCompleto + ", correo=" + correo + ", contrasenia=" + contrasenia + ", telefono=" + telefono + ", avatar=" + avatar + ", postsComunes=" + postsComunes + '}';
+//    }
 }

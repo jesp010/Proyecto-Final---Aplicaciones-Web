@@ -2,11 +2,16 @@ package ObjetosNegocio;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
+import java.util.logging.Logger;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,16 +23,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "comentarios")
 public class Comentario implements Serializable {
-    
-    public Comentario(){
-        
-    }
 
-    public Comentario(Integer id, Date fechaHora, String contenido) {
-        this.id = id;
-        this.fechaHora = fechaHora;
-        this.contenido = contenido;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +35,34 @@ public class Comentario implements Serializable {
 
     @Column(name = "contenido", nullable = false)
     private String contenido;
+    
+    @ManyToOne()
+    @JoinColumn(name = "post_id", nullable = false)
+    private PostComun postComun;
 
+    @ManyToOne()
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private UsuarioNormal usuarioNormal;
+    
+    @OneToMany(mappedBy="comentarioPadre")
+    private Set<Comentario> subComentarios;
+    
+    @ManyToOne
+    private Comentario comentarioPadre;
+
+    public Comentario() {
+
+    }
+    
+    public Comentario(Date fechaHora, String contenido, PostComun postComun, UsuarioNormal usuarioNormal, Set<Comentario> subComentarios, Comentario comentarioPadre) {
+        this.fechaHora = fechaHora;
+        this.contenido = contenido;
+        this.postComun = postComun;
+        this.usuarioNormal = usuarioNormal;
+        this.subComentarios = subComentarios;
+        this.comentarioPadre = comentarioPadre;
+    }
+    
     public Integer getId() {
         return id;
     }
@@ -64,6 +87,38 @@ public class Comentario implements Serializable {
         this.contenido = contenido;
     }
 
+    public UsuarioNormal getUsuarioNormal() {
+        return usuarioNormal;
+    }
+
+    public void setUsuarioNormal(UsuarioNormal usuarioNormal) {
+        this.usuarioNormal = usuarioNormal;
+    }
+    
+    public Set<Comentario> getSubComentarios() {
+        return subComentarios;
+    }
+
+    public void setSubComentarios(Set<Comentario> subComentarios) {
+        this.subComentarios = subComentarios;
+    }
+
+    public Comentario getComentarioPadre() {
+        return comentarioPadre;
+    }
+
+    public void setComentarioPadre(Comentario comentarioPadre) {
+        this.comentarioPadre = comentarioPadre;
+    }
+
+    public PostComun getPostComun() {
+        return postComun;
+    }
+
+    public void setPostComun(PostComun postComun) {
+        this.postComun = postComun;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -84,8 +139,9 @@ public class Comentario implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "Comentario{" + "id=" + id + ", fechaHora=" + fechaHora + ", contenido=" + contenido + '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Comentario{" + "id=" + id + ", fechaHora=" + fechaHora + ", contenido=" + contenido + ", postComun=" + postComun + ", usuarioNormal=" + usuarioNormal + '}';
+//    }
+    
 }

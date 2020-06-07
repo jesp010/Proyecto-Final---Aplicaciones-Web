@@ -39,17 +39,17 @@ public class Post implements Serializable {
     private String contenido;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "fecha_edicion", nullable = false)
+    @Column(name = "fecha_edicion", nullable = true)
     private Date fechaEdicion;
     
     public Post() {
     }
 
-    public Post(Integer id, Date fechaCreacion, String titulo, String contenido) {
-        this.id = id;
+    public Post(Date fechaCreacion, String titulo, String contenido, Date fechaEdicion) {
         this.fechaCreacion = fechaCreacion;
         this.titulo = titulo;
         this.contenido = contenido;
+        this.fechaEdicion = this.fechaEdicion;
     }
     
     public Integer getId() {
@@ -104,8 +104,8 @@ public class Post implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "Post{" + "id=" + id + ", fechaCreacion=" + fechaCreacion + ", titulo=" + titulo + ", contenido=" + contenido + '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Post{" + "id=" + id + ", fechaCreacion=" + fechaCreacion + ", titulo=" + titulo + ", contenido=" + contenido + '}';
+//    }
 }
