@@ -47,7 +47,7 @@ public class BlogFachada {
         post.saveComun(postComun);
     }
     
-    public void save(Comentario comentarios) {
+    public void saveComentario(Comentario comentarios) {
         comentario.save(comentarios);
     }
     
@@ -63,7 +63,7 @@ public class BlogFachada {
         return post.deleteAnclado(id);
     }
     
-    public boolean deleComun(Integer id) {
+    public boolean deleteComun(Integer id) {
         return post.deleteComun(id);
     }
     
