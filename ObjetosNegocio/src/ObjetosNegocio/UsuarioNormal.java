@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 /**
  *
  * @author Juan Enrique Solis Perla, ID: 165920
+ * @author Luis Carlos Osuna Cuen, ID:165650
  */
 @Entity
 @DiscriminatorValue( value="UN" )

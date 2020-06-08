@@ -21,6 +21,7 @@ import javax.persistence.Table;
 /**
  *
  * @author Juan Enrique Solis Perla, ID: 165920
+ * @author Luis Carlos Osuna Cuen, ID:165650
  */
 @Entity
 @Table(name = "usuarios")
