@@ -4,7 +4,7 @@ import Fachada.PersistenciaFachada;
 
 
 public class PersistenciaFactoriaFachada {
-    public static PersistenciaFachada getPersistenciaFachada(String tipo){
+    public static PersistenciaFachada getPersistenciaFachada(){
         return new PersistenciaFachada();
     }
 }
