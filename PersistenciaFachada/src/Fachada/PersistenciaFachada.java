@@ -19,13 +19,13 @@ import Repositorios.RepositorioUsuario;
  *
  * @author Luis Osuna
  */
-public class BlogFachada {
+public class PersistenciaFachada {
     RepositorioUsuario usuario;
     RepositorioPost post;
     RepositorioComentario comentario;
 
     
-    public BlogFachada(){
+    public PersistenciaFachada(){
     usuario = new RepositorioUsuario();
     post = new RepositorioPost();
     comentario = new RepositorioComentario();
