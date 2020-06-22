@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> Registro </title>
+		<link rel="stylesheet" href="css/StyleIndex.css">
+		<script>
+			function Registro(){
+				alert('Registro Correcto');
+				window.location='Login.html';
+			}
+		</script>
+	</head>
+	<body>
+		<section>
+			<header>
+				<h1>Formulario de Registro</h1>
+			</header>
+			<input class="campos" type="text" name="nombre" id="nombre" placeholder="Ingrese su o sus nombres">
+			<input class="campos" type="text" name="apellidos" id="apellidos" placeholder="Ingrese sus apellidos">
+			<input class="campos" type="email" name="correo" id="correo" placeholder="Ingrese su correo electronico">
+			<input class="campos" type="password" name="password" id="password" placeholder="Ingrese su contraseña">
+			<input class="campos" type="tel" name="telefono" id="telefono" placeholder="Ingrese su telefono">
+
+				<select class="custom">
+					<option value="0">Seleccione un Estado...</option>
+					<option value="1">Aguascalientes</option>
+					<option value="2">Baja California</option>
+					<option value="3">Baja California Sur</option>
+					<option value="4">Campeche</option>
+					<option value="5">Chiapas</option>
+					<option value="6">Chihuahua</option>
+					<option value="7">Coahiula</option>
+					<option value="8">Colima</option>
+					<option value="9">Distrito Federal</option>
+					<option value="10">Durango</option>
+					<option value="11">Estado de México</option>
+					<option value="12">Guanajuato</option>
+					<option value="13">Guerrero</option>
+					<option value="14">Hidalgo</option>
+					<option value="15">Jalisco</option>
+					<option value="16">Michoacán</option>
+					<option value="17">Morelos</option>
+					<option value="18">Nayarit</option>
+					<option value="19">Nuevo León</option>
+					<option value="20">Oaxaca</option>
+					<option value="21">Puebla</option>
+					<option value="22">Querétaro</option>
+					<option value="23">Quintana Roo</option>
+					<option value="24">San Luis Potosí</option>
+					<option value="25">Sinaloa</option>
+					<option value="26">Sonora</option>
+					<option value="27">Tabasco</option>
+					<option value="28">Tamaulipas</option>
+					<option value="29">Tlaxcala</option>
+					<option value="30">Veracruz</option>
+					<option value="31">Yucatán</option>
+					<option value="32">Zacatecas</option>
+
+				</select>
+			<input class="campos" type="text" name="municipio" id="municipio" placeholder="Ingrese su Municipio">
+			<p>Fecha de Nacimiento:</p>
+			<input class="campos" type="date" name="fechaN" id="fechaN">
+
+				<select class="custom">
+					<option value="Seleccion">Nivel de experiencia en foros...</option>
+					<option value="Novato">Novato</option>
+					<option value="SemiNovato">Semi-Novato</option>
+					<option value="Intermedio">Intermedio</option>
+					<option value="Regular">Regular</option>
+					<option value="Experto">Experto</option>
+				</select>
+
+			<input class="boton" type="submit" onclick="Registro()" value="Registrar" >
+			<p>¿Ya tienes una cuenta? Intenta&nbsp<a href="Login.html">Iniciar Sesión</a>.</p>
+
+
+		</section>
+	</body>
+
+</html>

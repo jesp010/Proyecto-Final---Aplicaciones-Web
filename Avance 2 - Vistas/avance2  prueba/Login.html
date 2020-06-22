@@ -1,0 +1,27 @@
+<!DOCTYPE HTML
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> Iniciar Sesion </title>
+		<link rel="stylesheet" href="css/StyleIndex.css">
+		<script>
+			function registro(){
+				window.location='index.html';
+			}
+		</script>
+	</head>
+	<body>
+		<section class ="form-login">
+			<header>
+				<h1>Inicio de Sesion</h1>
+			</header>
+			<input class="campos" type="email" name="correo" id="correo" placeholder="Ingrese su correo electronico">
+			<input class="campos" type="password" name="password" id="password" placeholder="Ingrese su contraseña">
+
+			<input class="checkbox" type="checkbox" name="recordarme" value="recordarme"><label for="recordarme">&nbspRecordarme</label><br>
+			<input class="boton" type="submit" onclick="registro()" value="Iniciar Sesion" >
+			<p>¿No tienes una cuenta? Intenta <a class="Registro" href="Registro.html">Registrarte</a>.</p>
+		</section>
+	</body>
+
+</html>

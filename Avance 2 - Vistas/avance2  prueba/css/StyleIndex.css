@@ -1,0 +1,236 @@
+*{
+	margin:0px;
+	padding:0px;
+	box-sizing: border-box;
+}
+
+body{
+	background-color: #F3F3F3;
+
+}
+	main{
+		display: flex;
+		flex-flow: column nowrap;
+		align-items: center;
+	}
+
+	header{
+		margin: 25px;
+		text-align: center;
+	}
+
+	.menu{
+		width: 75%;
+		margin: 10px;
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		height: 60px;
+		background-color: #283B42;
+		border-bottom: none;
+		border: none;
+	}
+	nav{
+	flex: 5 1 auto;
+}
+nav ul{
+	display: flex;
+	flex-flow: row nowrap;
+	padding: 20px;
+	margin: 10px;
+}
+nav li{
+	margin: 0 30px;
+	font-size: 17px;
+	color: white;
+}
+
+	.postAnclados{
+		width: 76%;
+		display: flex;
+		flex-flow: row nowrap;
+
+	}
+		.postAnclados article{
+			margin: 5px;
+			padding: 5px;
+			border-style: solid;
+			border-color: #283B42;
+			height: 150px;
+			margin-top: -5px;
+
+		}
+			article h2{
+				margin-top: 60px;
+				font-size: 13px;
+			}
+			article h3{
+				font-size: 20px;
+			}
+		.subtitulo{
+			background-color: #283B42;
+			width: 75%;
+			align-items: center;
+			text-align: center;
+			margin-top: 75px;
+		}
+			.subtitulo h2{
+				font-size: 35px;
+				color: white;
+			}
+
+		.post{
+			width: 76%;
+			display: flex;
+		}
+
+			.articulos{
+				display: flex;
+				flex: 1 1 auto;
+				flex-flow: row wrap;
+			}
+				.articulos article{
+					margin: 5px;
+					padding: 5px;
+					border-style: solid;
+					border-color: #283B42;
+					height: 300px;
+					margin-top: 10px;
+					flex: 1 1 40%;
+				}
+		.hojas{
+			width: 75%;
+			margin: 10px;
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			height: 50px;
+			background-color: #283B42;
+			border-bottom: none;
+			border: none;
+
+		}
+			.navegacion{
+				flex: 1 1 auto;
+			}
+				.navegacion ul{
+					text-align: center;
+					margin: 20px;
+				}
+				.navegacion a{
+					border-style: solid;
+					border-color: #283B42;
+					color: white;
+				}
+ul{
+	width: 450px;
+	background: #283B42;
+	color: white;
+	text-align: center;
+	padding: 10px;
+	font-family: 'Century Gothicothic';
+	font-size: 20px;
+}
+				section {
+					width: 500px;
+					background: #283B42;
+					padding: 50px;
+					margin: auto;
+					margin-top: 100px;
+					border-radius: 4px;
+					font-family: 'Century Gothicothic';
+					color: white;
+					box-shadow: 7px 13px 37px #000;
+					text-align: center;
+				}
+				.form-registro{
+					text-align: center;
+				}
+
+				.form-registro h1 {
+
+					font-size: 22px;
+					margin-bottom: 30px;
+					text-align: center;
+				}
+
+				.campos{
+					width: 100%;
+					background: #283B42;
+					padding: 10px;
+					border-radius: 4px;
+					margin-bottom: 15px;
+					border: 1px solid #1674E6;
+					font-family: 'Century Gothicothic';
+					font-size: 18px;
+					color: white;
+				}
+
+				.custom{
+					width: 100%;
+					background: #283B42;
+					padding: 10px;
+					border-radius: 4px;
+					margin-bottom: 15px;
+					border: 1px solid #1674E6;
+					font-family: 'Century Gothicothic';
+					font-size: 18px;
+					color: white;
+					cursor: pointer;
+
+				}
+
+				.form-registro p{
+					text-align: center;
+					margin-bottom: 15px;
+					font-family: 'Century Gothicothic';
+
+				}
+
+				.rango{
+					width: 100%;
+					margin-bottom: 15px;
+					color:white;
+					cursor: pointer;
+
+				}
+
+				.boton{
+					width: 170px;
+					background: #69A455;
+					padding: 10px;
+					border-radius: 4px;
+					margin: 20px;
+					margin-bottom: 15px;
+					border: 1px solid #1674E6;
+					font-family: 'Century Gothicothic';
+					font-size: 18px;
+					color: white;
+					cursor: pointer;
+				}
+
+
+				section a{
+					color:#3B5998;
+				}
+
+				::-webkit-input-placeholder{
+					color: white;
+				}
+				section h1{
+					font-size: 22px;
+					margin-bottom: 30px;
+					text-align: center;
+				}
+.contenido{
+	width: 100%;
+	height: 300px;
+	background: #283B42;
+	padding: 10px;
+	border-radius: 4px;
+	margin-bottom: 15px;
+	border: 1px solid #1674E6;
+	font-family: 'Century Gothicothic';
+	font-size: 18px;
+	color: white;
+}
