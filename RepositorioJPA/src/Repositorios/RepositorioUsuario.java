@@ -50,7 +50,7 @@ public class RepositorioUsuario {
         }
         return null;
     }
-    
+
     public UsuarioAdministrador findAdminByAvatar(String avatar) {
         ArrayList<UsuarioAdministrador> users = findAdminAll();
         for (UsuarioAdministrador u : users) {
@@ -72,7 +72,7 @@ public class RepositorioUsuario {
         }
         return users;
     }
-    
+
     public ArrayList<UsuarioAdministrador> findAdminlAll(UsuarioAdministrador user) {
         ArrayList<UsuarioAdministrador> users = findAdminAll();
         if (users.size() > 0) {
@@ -97,11 +97,7 @@ public class RepositorioUsuario {
         ArrayList<UsuarioNormal> users = new ArrayList<>(q.getResultList());
         //Transaction ends
         em.getTransaction().commit();
-        //If suppliers isn't null it is returned otherwise the method returns null
-        if (users != null) {
-            return users;
-        }
-        return null;
+        return users;
     }
 
     public ArrayList<UsuarioAdministrador> findAdminAll() {
@@ -122,7 +118,7 @@ public class RepositorioUsuario {
         }
         return null;
     }
-    
+
     public void saveNormal(UsuarioNormal user) {
         em.getTransaction().begin();
         em.persist(user);

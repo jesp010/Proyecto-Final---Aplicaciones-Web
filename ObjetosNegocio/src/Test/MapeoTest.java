@@ -16,10 +16,33 @@ public class MapeoTest {
 
         factory = Persistence.createEntityManagerFactory(PU);
         em = factory.createEntityManager();
-
+        
         ArrayList<Object> objects = new ArrayList<>();
-        UsuarioAdministrador usuario1 = new UsuarioAdministrador("Juan Solis", "juan@gmail.com", "password", "6444253614", "jesp010", null, null);
-        UsuarioNormal usuario2 = new UsuarioNormal("Juan Solis", "juan@gmail.com", "password", "6444253614", "jesp010", null, null);
+        
+        Estado e1 = new Estado("Sonora", null);
+        Estado e2 = new Estado("Sinaloa", null);
+        
+        objects.add(e1);
+        objects.add(e2);
+        
+        Municipio m1 = new Municipio("Cajeme",  e1, null);
+        Municipio m2 = new Municipio("Hermosillo",  e1, null);
+        Municipio m3 = new Municipio("Navojoa",  e1, null);
+        
+        objects.add(m1);
+        objects.add(m2);
+        objects.add(m3);
+        
+        Municipio m4 = new Municipio("Los Mochis",  e2, null);
+        Municipio m5 = new Municipio("Culiacan",  e2, null);
+        Municipio m6 = new Municipio("Mazatlan",  e2, null);
+
+        objects.add(m4);
+        objects.add(m5);
+        objects.add(m6);
+        
+        UsuarioAdministrador usuario1 = new UsuarioAdministrador("Juan Solis", "juan@gmail.com", "password", "6444253614", "jesp010", null, null, m1);
+        UsuarioNormal usuario2 = new UsuarioNormal("Juan Solis", "juan@gmail.com", "password", "6444253614", "jesp010", null, null, m4);
 
         objects.add(usuario1);
         objects.add(usuario2);

@@ -31,8 +31,8 @@ public class UsuarioAdministrador extends Usuario {
         super();
     }
 
-    public UsuarioAdministrador(String nombreCompleto, String correo, String contrasenia, String telefono, String avatar, List<PostComun> postsComunes,List<PostAnclado> postsAnclados){
-        super(nombreCompleto, correo, contrasenia, telefono, avatar, postsComunes);
+    public UsuarioAdministrador(String nombreCompleto, String correo, String contrasenia, String telefono, String avatar, List<PostComun> postsComunes,List<PostAnclado> postsAnclados, Municipio municipio){
+        super(nombreCompleto, correo, contrasenia, telefono, avatar, postsComunes, municipio);
         this.postsAnclados = postsAnclados;
     }
 

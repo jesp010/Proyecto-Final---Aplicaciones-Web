@@ -9,11 +9,13 @@
     <class>ObjetosNegocio.Usuario</class>
     <class>ObjetosNegocio.UsuarioAdministrador</class>
     <class>ObjetosNegocio.UsuarioNormal</class>
+    <class>ObjetosNegocio.Estado</class>
+    <class>ObjetosNegocio.Municipio</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/apps_web?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
-      <property name="javax.persistence.jdbc.user" value=""/>
+      <property name="javax.persistence.jdbc.user" value="juan"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value=""/>
+      <property name="javax.persistence.jdbc.password" value="dbpassword"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
   </persistence-unit>

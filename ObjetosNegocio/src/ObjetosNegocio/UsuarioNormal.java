@@ -27,8 +27,8 @@ public class UsuarioNormal extends Usuario {
         super();
     }
     
-    public UsuarioNormal(String nombreCompleto, String correo, String contrasenia, String telefono, String avatar, List<PostComun> postsComunes,List<Comentario> comentarios) {
-        super(nombreCompleto, correo, contrasenia, telefono, avatar, postsComunes);
+    public UsuarioNormal(String nombreCompleto, String correo, String contrasenia, String telefono, String avatar, List<PostComun> postsComunes,List<Comentario> comentarios, Municipio municipio) {
+        super(nombreCompleto, correo, contrasenia, telefono, avatar, postsComunes, municipio);
         this.comentarios = comentarios;
     }
 

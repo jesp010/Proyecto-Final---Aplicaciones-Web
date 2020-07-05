@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Persistence;
 import javax.persistence.Table;
@@ -45,22 +47,29 @@ public class Usuario implements Serializable {
     @Column(name = "telefono", nullable = false)
     private String telefono;
     
-    @Column(name = "avatar", nullable = false)
+    @Column(name = "avatar", nullable = true)
     private String avatar;
+    
+    @ManyToOne()
+    @JoinColumn(name = "municipio_id", nullable = false)
+    private Municipio municipio;
     
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<PostComun> postsComunes;
+    
+    
 
     public Usuario() {
     }
 
-    public Usuario(String nombreCompleto, String correo, String contrasenia, String telefono, String avatar, List<PostComun> postsComunes) {
+    public Usuario(String nombreCompleto, String correo, String contrasenia, String telefono, String avatar, List<PostComun> postsComunes, Municipio municipio) {
         this.nombreCompleto = nombreCompleto;
         this.correo = correo;
         this.contrasenia = contrasenia;
         this.telefono = telefono;
         this.avatar = avatar;
         this.postsComunes = postsComunes;
+        this.municipio = municipio;
     }
     
     public Integer getId() {
@@ -111,6 +120,14 @@ public class Usuario implements Serializable {
         this.avatar = avatar;
     }
 
+    public Municipio getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(Municipio municipio) {
+        this.municipio = municipio;
+    }
+    
     public List<PostComun> getPostsComunes() {
         return postsComunes;
     }
@@ -141,6 +158,6 @@ public class Usuario implements Serializable {
 
 //    @Override
 //    public String toString() {
-//        return "Usuario{" + "id=" + id + ", nombreCompleto=" + nombreCompleto + ", correo=" + correo + ", contrasenia=" + contrasenia + ", telefono=" + telefono + ", avatar=" + avatar + ", postsComunes=" + postsComunes + '}';
+//        return "Usuario{" + "id=" + id + ", nombreCompleto=" + nombreCompleto + ", correo=" + correo + ", contrasenia=" + contrasenia + ", telefono=" + telefono + ", avatar=" + avatar + ", municipio=" + municipio + '}';
 //    }
 }
