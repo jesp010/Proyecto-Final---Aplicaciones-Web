@@ -6,6 +6,7 @@
 package ObjetosNegocio;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
@@ -31,8 +32,8 @@ public class UsuarioAdministrador extends Usuario {
         super();
     }
 
-    public UsuarioAdministrador(String nombreCompleto, String correo, String contrasenia, String telefono, String avatar, List<PostComun> postsComunes,List<PostAnclado> postsAnclados, Municipio municipio){
-        super(nombreCompleto, correo, contrasenia, telefono, avatar, postsComunes, municipio);
+    public UsuarioAdministrador(String nombreCompleto, String correo, String contrasenia, String telefono, String avatar, String genero, Date fechaNacimiento, List<PostComun> postsComunes,List<PostAnclado> postsAnclados, Municipio municipio){
+        super(nombreCompleto, correo, contrasenia, telefono, avatar, genero, fechaNacimiento, postsComunes, municipio);
         this.postsAnclados = postsAnclados;
     }
 

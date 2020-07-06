@@ -1,6 +1,7 @@
 package ObjetosNegocio;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,6 +20,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Persistence;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -38,7 +41,7 @@ public class Usuario implements Serializable {
     @Column(name = "nombre_completo", nullable = false)
     private String nombreCompleto;
     
-    @Column(name = "correo", nullable = false)
+    @Column(name = "correo", nullable = false, unique = true)
     private String correo;
     
     @Column(name = "contrasenia", nullable = false)
@@ -49,6 +52,13 @@ public class Usuario implements Serializable {
     
     @Column(name = "avatar", nullable = true)
     private String avatar;
+    
+    @Column(name = "genero", nullable = true)
+    private String genero;
+    
+    @Temporal(TemporalType.DATE)
+    @Column(name = "fecha_nacimiento", nullable = false)
+    private Date fechaNacimiento;
     
     @ManyToOne()
     @JoinColumn(name = "municipio_id", nullable = false)
@@ -62,11 +72,13 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public Usuario(String nombreCompleto, String correo, String contrasenia, String telefono, String avatar, List<PostComun> postsComunes, Municipio municipio) {
+    public Usuario(String nombreCompleto, String correo, String contrasenia, String telefono, String avatar, String genero, Date fechaNacimiento, List<PostComun> postsComunes, Municipio municipio) {
         this.nombreCompleto = nombreCompleto;
         this.correo = correo;
         this.contrasenia = contrasenia;
         this.telefono = telefono;
+        this.genero = genero;
+        this.fechaNacimiento = fechaNacimiento;
         this.avatar = avatar;
         this.postsComunes = postsComunes;
         this.municipio = municipio;
@@ -156,8 +168,8 @@ public class Usuario implements Serializable {
         return true;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Usuario{" + "id=" + id + ", nombreCompleto=" + nombreCompleto + ", correo=" + correo + ", contrasenia=" + contrasenia + ", telefono=" + telefono + ", avatar=" + avatar + ", municipio=" + municipio + '}';
-//    }
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", nombreCompleto=" + nombreCompleto + ", correo=" + correo + ", contrasenia=" + contrasenia + ", telefono=" + telefono + ", avatar=" + avatar + ", municipio=" + municipio + '}';
+    }
 }

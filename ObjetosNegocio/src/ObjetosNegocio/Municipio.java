@@ -102,8 +102,8 @@ public class Municipio implements Serializable {
         return true;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Municipio{" + "id=" + id + ", nombre=" + nombre + ", estado=" + estado + ", usuarios=" + usuarios + '}';
-//    }
+    @Override
+    public String toString() {
+        return "Municipio{" + "id=" + id + ", nombre=" + nombre + ", estado=" + estado.getNombre() + ", estadoID=" + estado.getId();
+    }
 }

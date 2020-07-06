@@ -41,8 +41,8 @@ public class MapeoTest {
         objects.add(m5);
         objects.add(m6);
         
-        UsuarioAdministrador usuario1 = new UsuarioAdministrador("Juan Solis", "juan@gmail.com", "password", "6444253614", "jesp010", null, null, m1);
-        UsuarioNormal usuario2 = new UsuarioNormal("Juan Solis", "juan@gmail.com", "password", "6444253614", "jesp010", null, null, m4);
+        UsuarioAdministrador usuario1 = new UsuarioAdministrador("Juan Solis", "juan3@gmail.com", "password", "6444253614", "jesp010", "male", new Date(), null, null, m1);
+        UsuarioNormal usuario2 = new UsuarioNormal("Juan Solis", "juan4@gmail.com", "password", "6444253614", "jesp010", "male", new Date(), null, null, m4);
 
         objects.add(usuario1);
         objects.add(usuario2);

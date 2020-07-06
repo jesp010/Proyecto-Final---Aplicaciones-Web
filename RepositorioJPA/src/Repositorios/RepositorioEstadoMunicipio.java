@@ -23,6 +23,7 @@ public class RepositorioEstadoMunicipio {
     public RepositorioEstadoMunicipio() {
         factory = Persistence.createEntityManagerFactory(RepositorioBase.PU);
         em = factory.createEntityManager();
+        populateDB();
     }
 
     public Municipio findMunicipioByID(Integer id) {

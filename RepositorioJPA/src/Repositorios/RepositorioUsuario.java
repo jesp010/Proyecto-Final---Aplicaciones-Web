@@ -4,6 +4,7 @@ import ObjetosNegocio.Usuario;
 import ObjetosNegocio.UsuarioAdministrador;
 import ObjetosNegocio.UsuarioNormal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -61,6 +62,26 @@ public class RepositorioUsuario {
         return null;
     }
 
+    public UsuarioAdministrador findAdminByEmail(String email) {
+        ArrayList<UsuarioAdministrador> users = findAdminAll();
+        for (UsuarioAdministrador u : users) {
+            if (u.getCorreo().equals(email)) {
+                return u;
+            }
+        }
+        return null;
+    }
+
+    public UsuarioNormal findNormalByEmail(String email) {
+        ArrayList<UsuarioNormal> users = findNormalAll();
+        for (UsuarioNormal u : users) {
+            if (u.getCorreo().equals(email)) {
+                return u;
+            }
+        }
+        return null;
+    }
+
     public ArrayList<UsuarioNormal> findNormalAll(UsuarioNormal user) {
         ArrayList<UsuarioNormal> users = findNormalAll();
         if (users.size() > 0) {
@@ -90,13 +111,14 @@ public class RepositorioUsuario {
         //Creates the query constructor
         CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
         //Builds the object
-        cq.select(cq.from(Usuario.class));
+        cq.select(cq.from(UsuarioNormal.class));
         //Creates the query ready to execute
         Query q = em.createQuery(cq);
         //Execute the query and stores the result in an ArrayList
         ArrayList<UsuarioNormal> users = new ArrayList<>(q.getResultList());
         //Transaction ends
         em.getTransaction().commit();
+
         return users;
     }
 
@@ -105,7 +127,7 @@ public class RepositorioUsuario {
         //Creates the query constructor
         CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
         //Builds the object
-        cq.select(cq.from(Usuario.class));
+        cq.select(cq.from(UsuarioAdministrador.class));
         //Creates the query ready to execute
         Query q = em.createQuery(cq);
         //Execute the query and stores the result in an ArrayList
@@ -113,10 +135,8 @@ public class RepositorioUsuario {
         //Transaction ends
         em.getTransaction().commit();
         //If suppliers isn't null it is returned otherwise the method returns null
-        if (users != null) {
-            return users;
-        }
-        return null;
+
+        return users;
     }
 
     public void saveNormal(UsuarioNormal user) {
@@ -241,4 +261,13 @@ public class RepositorioUsuario {
         }
     }
 
+    public void saveDemoUsuarioAdmins() {
+        RepositorioEstadoMunicipio rem = new RepositorioEstadoMunicipio();
+        rem.populateDB();
+        UsuarioAdministrador ua1 = new UsuarioAdministrador("Juan Enrique Solis Perla", "juan@gmail.com", "passwordXD", "6442415263", null, "male", new Date(), null, null, rem.findAllMunicipios().get(0));
+        UsuarioAdministrador ua2 = new UsuarioAdministrador("Jose Perez Lopez", "jose@gmail.com", "passwordXD", "6442158946", null, "male", new Date(), null, null, rem.findAllMunicipios().get(1));
+
+        saveAdmin(ua1);
+        saveAdmin(ua2);
+    }
 }
