@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
                 if (usuarioAdministrador.getContrasenia().equals(password)) {
                     HttpSession session = request.getSession(true);
                     session.setAttribute("currentSessionUser", usuarioAdministrador);
-                    response.sendRedirect("admin"); //logged-in admin page  
+                    response.sendRedirect("home"); //logged-in admin page  
                     return;
                 }
             }

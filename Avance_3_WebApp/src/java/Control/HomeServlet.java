@@ -20,11 +20,16 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         processRequest(request, response);
     }
 
-    private void processRequest (HttpServletRequest request, HttpServletResponse response)
+    private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        PersistenciaFachada persistenciaFachada = PersistenciaFachadaFactoria.getPersistenciaFachada();
+        request.setAttribute("postsComunes", persistenciaFachada.findAllPostComun());
+        request.setAttribute("postsAnclados", persistenciaFachada.findAllPostAnclado());
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("Home.jsp");
         dispatcher.forward(request, response);

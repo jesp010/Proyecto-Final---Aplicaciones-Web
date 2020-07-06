@@ -31,7 +31,15 @@ public class PersistenciaFachada {
         comentario = new RepositorioComentario();
         estadoMunicipio = new RepositorioEstadoMunicipio();
     }
-
+    
+    public ArrayList<PostComun> findAllPostComun() {
+        return post.findAllComun();
+    }
+    
+    public ArrayList<PostAnclado> findAllPostAnclado() {
+        return post.findAllAnclado();
+    }
+        
     public void saveNormal(UsuarioNormal usuarioNormal) {
         usuario.saveNormal(usuarioNormal);
     }

@@ -24,21 +24,21 @@ public class RepositorioPost {
         factory = Persistence.createEntityManagerFactory(RepositorioBase.PU);
         em = factory.createEntityManager();
     }
-    
+
     public PostComun findComunByID(Integer id) {
         em.getTransaction().begin();
         PostComun user = em.find(PostComun.class, id);
         em.getTransaction().commit();
         return user;
     }
-    
+
     public PostAnclado findAncladoByID(Integer id) {
         em.getTransaction().begin();
         PostAnclado user = em.find(PostAnclado.class, id);
         em.getTransaction().commit();
         return user;
     }
-    
+
     public ArrayList<PostComun> findAllComun() {
         em.getTransaction().begin();
         //Creates the query constructor
@@ -51,19 +51,15 @@ public class RepositorioPost {
         ArrayList<PostComun> postsComunes = new ArrayList<>(q.getResultList());
         //Transaction ends
         em.getTransaction().commit();
-        //If isn't null it is returned otherwise the method returns null
-        if (postsComunes != null) {
-            return postsComunes;
-        }
-        return null;
+        return postsComunes;
     }
-    
+
     public ArrayList<PostAnclado> findAllAnclado() {
         em.getTransaction().begin();
         //Creates the query constructor
         CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
         //Builds the object
-        cq.select(cq.from(PostComun.class));
+        cq.select(cq.from(PostAnclado.class));
         //Creates the query ready to execute
         Query q = em.createQuery(cq);
         //Execute the query and stores the result in an ArrayList
@@ -76,11 +72,11 @@ public class RepositorioPost {
         }
         return null;
     }
-    
+
     public ArrayList<PostComun> findAllComunByUserID(Integer userID) {
         ArrayList<PostComun> allPosts = findAllComun();
         ArrayList<PostComun> posts = new ArrayList<>();
-        
+
         //Check if ArrayList isn't empty
         if (allPosts.size() > 0) {
             for (PostComun r : allPosts) {
@@ -92,11 +88,11 @@ public class RepositorioPost {
 
         return posts;
     }
-    
+
     public ArrayList<PostAnclado> findAllAncladoByAdminID(Integer adminID) {
         ArrayList<PostAnclado> allPosts = findAllAnclado();
         ArrayList<PostAnclado> posts = new ArrayList<>();
-        
+
         //Check if ArrayList isn't empty
         if (allPosts.size() > 0) {
             for (PostAnclado r : allPosts) {
@@ -108,19 +104,19 @@ public class RepositorioPost {
 
         return posts;
     }
-    
+
     public void saveComun(PostComun postComun) {
         em.getTransaction().begin();
         em.persist(postComun);
         em.getTransaction().commit();
     }
-    
+
     public void saveAnclado(PostAnclado postAnclado) {
         em.getTransaction().begin();
         em.persist(postAnclado);
         em.getTransaction().commit();
     }
-    
+
     public boolean updateComun(PostComun postComun) {
         if (postComun != null) {
             em.getTransaction().begin();
@@ -140,7 +136,7 @@ public class RepositorioPost {
         }
         return false;
     }
-    
+
     public boolean updateAnclado(PostAnclado postAnclado) {
         if (postAnclado != null) {
             em.getTransaction().begin();
@@ -159,7 +155,7 @@ public class RepositorioPost {
         }
         return false;
     }
-    
+
     public boolean deleteComun(Integer id) {
         em.getTransaction().begin();
         PostComun postComun = em.find(PostComun.class, id);
@@ -182,7 +178,7 @@ public class RepositorioPost {
             return false;
         }
     }
-    
+
     public boolean deleteAnclado(Integer id) {
         em.getTransaction().begin();
         PostAnclado postAnclado = em.find(PostAnclado.class, id);
