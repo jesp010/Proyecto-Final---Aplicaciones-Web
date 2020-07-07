@@ -1,12 +1,20 @@
 <%-- 
     Document   : Home
     Created on : Jul 5, 2020, 2:40:44 PM
-    Author     : juan
+    Author     : Juan Enrique Solis Perla
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    
+    <!-- Auth user -->
+    <!-- If there's no user in session object (null), redirect to login page-->
+    <c:if test="${currentSessionUser == null}">
+        <c:redirect url = "/login"/>
+    </c:if>
+
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home</title>
@@ -22,8 +30,8 @@
         <%@include file="jspf/Header.jspf" %>
 
         <div class="top-banner"><strong>Usuario: <c:out value="${currentSessionUser.getNombreCompleto()}"/> Email: <c:out value="${currentSessionUser.getCorreo()}"/></strong></div>
+        
         <main>
-
             <aside>
             </aside>
             <section>
@@ -59,7 +67,7 @@
                         quis
                         volutpat.</p>
                 </article>
-                
+
                 <c:forEach items="${postsComunes}" var="postComun">
                     <article class="normal-post">
                         <p>by: <strong><span class="user-email"><c:out value="${postComun.getUsuario().getCorreo()}"/></span></strong></p>
@@ -67,7 +75,7 @@
                         <p><c:out value="${postComun.getContenido()}"/></p>
                     </article>
                 </c:forEach>
-                
+
                 <article class="normal-post">
                     <p>by: <strong><span class="user-email">juan@gmail.com</span></strong></p>
                     <h2>Title Normal Post</h2>
