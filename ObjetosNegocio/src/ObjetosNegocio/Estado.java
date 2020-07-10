@@ -28,7 +28,7 @@ public class Estado implements Serializable {
     private String nombre;
     
     @OneToMany(mappedBy = "estado", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Municipio> municipios;
+    private transient List<Municipio> municipios;
 
     public Estado() {
     }

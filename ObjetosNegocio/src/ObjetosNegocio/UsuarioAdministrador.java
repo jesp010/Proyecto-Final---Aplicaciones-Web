@@ -26,7 +26,7 @@ import javax.persistence.OneToMany;
 public class UsuarioAdministrador extends Usuario {
     
     @OneToMany(mappedBy = "usuarioAdministrador", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<PostAnclado> postsAnclados;
+    private transient List<PostAnclado> postsAnclados;
     
     public UsuarioAdministrador(){
         super();

@@ -65,7 +65,7 @@ public class Usuario implements Serializable {
     private Municipio municipio;
     
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<PostComun> postsComunes;
+    private transient List<PostComun> postsComunes;
     
     
 
@@ -80,7 +80,7 @@ public class Usuario implements Serializable {
         this.genero = genero;
         this.fechaNacimiento = fechaNacimiento;
         this.avatar = avatar;
-        this.postsComunes = postsComunes;
+        this.postsComunes = null;
         this.municipio = municipio;
     }
     

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Factoria.PersistenciaFachadaFactoria;
 import Fachada.PersistenciaFachada;
+import com.google.gson.Gson;
 import javax.servlet.RequestDispatcher;
 
 /**
@@ -30,10 +31,11 @@ public class HomeServlet extends HttpServlet {
         PersistenciaFachada persistenciaFachada = PersistenciaFachadaFactoria.getPersistenciaFachada();
         request.setAttribute("postsComunes", persistenciaFachada.findAllPostComun());
         request.setAttribute("postsAnclados", persistenciaFachada.findAllPostAnclado());
-
+        
         RequestDispatcher dispatcher = request.getRequestDispatcher("Home.jsp");
         dispatcher.forward(request, response);
 //        response.sendRedirect(request.getContextPath() + "/home");
+
     }
 
     @Override

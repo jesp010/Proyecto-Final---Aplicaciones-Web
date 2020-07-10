@@ -39,7 +39,7 @@ public class Municipio implements Serializable {
     private Estado estado;
     
     @OneToMany(mappedBy = "municipio", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Usuario> usuarios;
+    private transient List<Usuario> usuarios;
 
     public Municipio() {
     }
@@ -47,7 +47,7 @@ public class Municipio implements Serializable {
     public Municipio(String nombre, Estado estado, List<Usuario> usuarios) {
         this.nombre = nombre;
         this.estado = estado;
-        this.usuarios = usuarios;
+        this.usuarios = null;
     }
     
     public Integer getId() {

@@ -41,14 +41,14 @@ public class MapeoTest {
         objects.add(m5);
         objects.add(m6);
         
-        UsuarioAdministrador usuario1 = new UsuarioAdministrador("Juan Solis", "juan3@gmail.com", "password", "6444253614", "jesp010", "male", new Date(), null, null, m1);
-        UsuarioNormal usuario2 = new UsuarioNormal("Juan Solis", "juan4@gmail.com", "password", "6444253614", "jesp010", "male", new Date(), null, null, m4);
+        UsuarioAdministrador usuario1 = new UsuarioAdministrador("Juan Solis", "juan32dd2@gmail.com", "password", "6444253614", "jesp010", "male", new Date(), null, null, m1);
+        UsuarioNormal usuario2 = new UsuarioNormal("Juan Solis", "juan42d2@gmail.com", "password", "6444253614", "jesp010", "male", new Date(), null, null, m4);
 
         objects.add(usuario1);
         objects.add(usuario2);
 
-        PostAnclado post1 = new PostAnclado(new Date(), "Post #1 Anclado", "Este es el primer post", usuario1, null);
-        PostComun post2 = new PostComun(new Date(), "Post #2 Comun", "Este es el segundo post", usuario2, null, null);
+        PostAnclado post1 = new PostAnclado(new Date(), "Post #3d2 Anclado", "Este es el primer post", usuario1, null);
+        PostComun post2 = new PostComun(new Date(), "Post #23d Comun", "Este es el segundo post", usuario2, null, null);
 
         objects.add(post1);
         objects.add(post2);

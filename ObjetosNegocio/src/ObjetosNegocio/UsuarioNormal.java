@@ -22,7 +22,7 @@ import javax.persistence.OneToMany;
 public class UsuarioNormal extends Usuario {
 
     @OneToMany(mappedBy = "usuarioNormal", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Comentario> comentarios;
+    private transient List<Comentario> comentarios;
     
     public UsuarioNormal() {
         super();

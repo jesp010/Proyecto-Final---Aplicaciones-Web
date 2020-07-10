@@ -45,10 +45,10 @@ public class Comentario implements Serializable {
     private UsuarioNormal usuarioNormal;
     
     @OneToMany(mappedBy="comentarioPadre")
-    private Set<Comentario> subComentarios;
+    private transient Set<Comentario> subComentarios;
     
     @ManyToOne
-    private Comentario comentarioPadre;
+    private transient Comentario comentarioPadre;
 
     public Comentario() {
 

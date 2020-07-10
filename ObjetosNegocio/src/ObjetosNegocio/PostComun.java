@@ -28,7 +28,7 @@ public class PostComun extends Post {
     private Usuario usuario;
     
     @OneToMany(mappedBy = "postComun", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Comentario> comentarios;
+    private transient List<Comentario> comentarios;
     
     public PostComun(){
         

@@ -37,8 +37,8 @@ public class LoginServlet extends HttpServlet {
             if (usuarioNormal.getClass().getName() == "ObjetosNegocio.UsuarioNormal") {
                 if (usuarioNormal.getContrasenia().equals(password)) {
                     HttpSession session = request.getSession(true);
-                    session.setAttribute("currentSessionUser", usuarioNormal);
-                    response.sendRedirect("home"); //logged-in page   
+                    request.getSession().setAttribute("currentSessionUser", usuarioNormal);
+                    response.sendRedirect("home"); //logged-in page
                     return;
                 }
             }
@@ -49,7 +49,8 @@ public class LoginServlet extends HttpServlet {
             if (usuarioAdministrador.getClass().getName() == "ObjetosNegocio.UsuarioAdministrador") {
                 if (usuarioAdministrador.getContrasenia().equals(password)) {
                     HttpSession session = request.getSession(true);
-                    session.setAttribute("currentSessionUser", usuarioAdministrador);
+//                    session.setAttribute("currentSessionUser", usuarioAdministrador);
+                    request.getSession().setAttribute("currentSessionUser", usuarioAdministrador);
                     response.sendRedirect("home"); //logged-in admin page  
                     return;
                 }
