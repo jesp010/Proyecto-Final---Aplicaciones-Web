@@ -37,38 +37,69 @@ class PostsManager {
         this.getPostsAnclados().then((anclados) => {
             this.sectionAnclados.innerHTML = '';
 
-            anclados.forEach((post) => {
-                this.sectionAnclados.innerHTML +=
-                        `<article class="admin-post" post-id="${post.id}">
-                    <p>by: <strong><span class="user-email">${post.usuarioAdministrador.correo}</span></strong></p>\n
-                    <h2>${post.titulo}</h2>
-                    <p>${post.contenido}</p>
-                 </article>
-                `;
-            });
+            if (this.userType == "ObjetosNegocio.UsuarioNormal") {
+                anclados.forEach((post) => {
+                    this.sectionAnclados.innerHTML +=
+                            `<article class="admin-post" post-id="${post.id}">
+                        <p>by: <strong><span class="user-email">${post.usuarioAdministrador.correo}</span></strong></p>\n
+                        <h2>${post.titulo}</h2>
+                        <p>${post.contenido}</p>
+                     </article>
+                    `;
+                });
+            } else if (this.userType == "ObjetosNegocio.UsuarioAdministrador") {
+                anclados.forEach((post) => {
+                    this.sectionAnclados.innerHTML +=
+                            `<article class="admin-post" post-id="${post.id}">
+                        <p>by: <strong><span class="user-email">${post.usuarioAdministrador.correo}</span></strong></p>\n
+                        <h2>${post.titulo}</h2>
+                        <p>${post.contenido}</p>
+                        <br><br>
+                        <button id="eliminar-post-${post.id}">Eliminar</button>
+                        <br><br>
+                     </article>
+                    `;
+                });
+            }
         })
     }
 
     renderComunes() {
         this.getPostsComunes().then((comunes) => {
             this.sectionComunes.innerHTML = '';
-            comunes.forEach((post) => {
-                this.sectionComunes.innerHTML += `
-                <article id="post-${post.id}" class="normal-post">
-                    <p>by: <strong><span class="user-email">${post.usuario.correo}</span></strong></p>
-                    <h2>${post.titulo}</h2>
-                    <p>${post.contenido}</p>
-                    <form id="comentario-form-post-${post.id}" class="comentario-form" post-id="${post.id}">
-                        <textarea  name='comentario' required></textarea>
-                        <button type="submit">Comenta</button>
-                    </form>
-                    <h5>Comentarios</h5>
-                </article>
-                `;
-            });
-            return comunes;
-        }).then((comunes) => {
-            this.addEvtListeners();
+
+            if (this.userType == "ObjetosNegocio.UsuarioNormal") {
+                console.log('UsuarioNormal');
+                comunes.forEach((post) => {
+                    this.sectionComunes.innerHTML += `
+                    <article id="post-${post.id}" class="normal-post">
+                        <p>by: <strong><span class="user-email">${post.usuario.correo}</span></strong></p>
+                        <h2>${post.titulo}</h2>
+                        <p>${post.contenido}</p>
+                        <form id="comentario-form-post-${post.id}" class="comentario-form" post-id="${post.id}">
+                            <textarea  name='comentario' required></textarea>
+                            <button type="submit">Comenta</button>
+                        </form>
+                        <h5>Comentarios</h5>
+                    </article>
+                    `;
+                });
+            } else if (this.userType == "ObjetosNegocio.UsuarioAdministrador") {
+                console.log('UsuarioAdmin');
+                comunes.forEach((post) => {
+                    this.sectionComunes.innerHTML += `
+                    <article id="post-${post.id}" class="normal-post">
+                        <p>by: <strong><span class="user-email">${post.usuario.correo}</span></strong></p>
+                        <h2>${post.titulo}</h2>
+                        <p>${post.contenido}</p>
+                        <br><br>
+                        <button id="eliminar-post-${post.id}">Eliminar</button>
+                        <br><br>
+                        <h5>Comentarios</h5>
+                    </article>
+                    `;
+                });
+            }
             return comunes;
         }).then((comunes) => {
             comunes.forEach((post) => {
@@ -85,26 +116,73 @@ class PostsManager {
                     });
                 });
             });
+        }).then((comunes) => {
+            this.addEvtListeners();
         })
     }
 
     addEvtListeners() {
         this.getPostsComunes().then((comunes) => {
-            comunes.forEach((post) => {
-                document.getElementById(`comentario-form-post-${post.id}`).addEventListener("submit", (evt) => {
-                    evt.preventDefault();
-                    let comentario = document.getElementById(`comentario-form-post-${post.id}`).elements[0].value;
-                    if (!(comentario.length < 1)) {
-                        let http = new XMLHttpRequest();
-                        let url = `/blog/comentarios?comentario=${comentario}&postid=${post.id}&usertype=${this.userType}&usuarioemail=${this.usuarioEmail}`;
-                        http.open("POST", url);
-                        http.send();
-                        alert('Comentario Exitoso!');
-                    } else
-                        alert('Comentario Vacio');
+            if (this.userType == "ObjetosNegocio.UsuarioNormal") {
+                comunes.forEach((post) => {
+                    document.getElementById(`comentario-form-post-${post.id}`).addEventListener("submit", (evt) => {
+                        evt.preventDefault();
+                        let comentario = document.getElementById(`comentario-form-post-${post.id}`).elements[0].value;
+                        if (!(comentario.length < 1)) {
+                            let http = new XMLHttpRequest();
+                            let url = `/blog/comentarios?comentario=${comentario}&postid=${post.id}&usertype=${this.userType}&usuarioemail=${this.usuarioEmail}`;
+                            http.open("POST", url);
+                            http.send();
+                            this.renderAnclados();
+                            this.renderComunes();
+                            alert('Comentario Exitoso!');
+                        } else
+                            alert('Comentario Vacio');
+                    });
                 });
+            }
+            return comunes;
+        }).then((comunes) => {
+            comunes.forEach((post) => {
+                if (this.userType == "ObjetosNegocio.UsuarioAdministrador") {
+                    comunes.forEach((post) => {
+                        document.getElementById(`eliminar-post-${post.id}`).addEventListener("click", (evt) => {
+
+                            let http = new XMLHttpRequest();
+
+                            let url = `/blog/posts?action=deletecomun&postid=${post.id}&usertype=${this.userType}&usuarioemail=${this.usuarioEmail}`;
+                            http.open("POST", url);
+                            http.send();
+                            this.renderAnclados();
+                            this.renderComunes();
+
+                            let postArticle = document.getElementById(`eliminar-post-${post.id}`).parentElement;
+                            this.sectionComunes.removeChild(postArticle);
+                        });
+                    });
+                }
             });
-        })
+        }).then(() => {
+            this.getPostsAnclados().then((anclados) => {
+                if (this.userType == "ObjetosNegocio.UsuarioAdministrador") {
+                    anclados.forEach((post) => {
+                        document.getElementById(`eliminar-post-${post.id}`).addEventListener("click", (evt) => {
+
+                            let http = new XMLHttpRequest();
+
+                            let url = `/blog/posts?action=deleteanclado&postid=${post.id}&usertype=${this.userType}&usuarioemail=${this.usuarioEmail}`;
+                            http.open("POST", url);
+                            http.send();
+                            this.renderAnclados();
+                            this.renderComunes();
+
+                            let postArticle = document.getElementById(`eliminar-post-${post.id}`).parentNode;
+                            this.sectionAnclados.removeChild(postArticle);
+                        });
+                    });
+                }
+            });
+        });
     }
 
     getPostsAnclados() {
@@ -137,7 +215,6 @@ class PostsManager {
                 });
     }
 
-    
     deletePostById(id) {
         let http = new XMLHttpRequest();
         let url = `/blog/posts?action=delete&postid=${id}`;

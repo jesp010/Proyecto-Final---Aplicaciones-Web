@@ -60,8 +60,17 @@ public class PostsServlet extends HttpServlet {
         String action = request.getParameter("action");
         PersistenciaFachada persistenciaFachada = PersistenciaFachadaFactoria.getPersistenciaFachada();
 
-        if (action.equalsIgnoreCase("delete")) {
-             System.out.println("");
+        if (action.equals("deletecomun")) {
+            String tipoUsuario = request.getParameter("usertype");
+            String usuarioEmail = request.getParameter("usuarioemail");
+            int postId = Integer.parseInt(request.getParameter("postid"));
+            persistenciaFachada.deleteComun(postId);
+            
+        } else if (action.equals("deleteanclado")){
+            String tipoUsuario = request.getParameter("usertype");
+            String usuarioEmail = request.getParameter("usuarioemail");
+            int postId = Integer.parseInt(request.getParameter("postid"));
+            persistenciaFachada.deleteAnclado(postId);
         } else {
             String titulo = request.getParameter("titulo");
             String contenido = request.getParameter("contenido");

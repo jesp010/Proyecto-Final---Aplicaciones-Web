@@ -1,0 +1,5 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<header>
+    <h1><span>blog.<span></h1>
+</header>
