@@ -64,7 +64,7 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "municipio_id", nullable = false)
     private Municipio municipio;
     
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval=true)
     private transient List<PostComun> postsComunes;
     
     

@@ -31,18 +31,25 @@
     <body>
         <%@include file="jspf/Header.jspf" %>
 
-        <div class="top-banner"><strong>Usuario: <c:out value="${currentSessionUser.getNombreCompleto()}"/> Email: <c:out value="${currentSessionUser.getCorreo()}"/></strong></div>
+        <c:if test="${currentSessionUser != null}">
+            <div id="usuario-data" class="top-banner" tipo-usuario="<c:out value="${currentSessionUser.getClass().getName()}"/>" user-id="<c:out value="${currentSessionUser.getId()}"/>"><strong>Usuario: <c:out value="${currentSessionUser.getNombreCompleto()}"/> Email: <span id="usuario-email"><c:out value="${currentSessionUser.getCorreo()}"/></span></strong></div>
+        </c:if>
 
         <main>
-            <aside>
-            </aside>
-            <section id="sectionAnclados">
-            </section>
-            
             <aside></aside>
-            
-            <section id="sectionComunes">
-            </section>
+            <form id="post-form">
+                <h3> Crea Nuevo Post </h3>
+                <label for="titulo">Titulo</label>
+                <input id="titulo" name="titulo" type="text" placeholder="titulo" required/>
+                <label for="contenido">Contenido</label>
+                <textarea id='contenido' name='contenido' required></textarea>
+                <button type="submit">Post</button>
+            </form>
+
+            <aside></aside>
+            <section id="sectionAnclados"></section>
+            <aside></aside>
+            <section id="sectionComunes"></section>
         </main>
 
         <%@include file="jspf/Footer.jspf" %>

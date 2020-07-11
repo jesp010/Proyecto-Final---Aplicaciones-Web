@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 import java.util.logging.Logger;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -44,7 +45,7 @@ public class Comentario implements Serializable {
     @JoinColumn(name = "usuario_id", nullable = false)
     private UsuarioNormal usuarioNormal;
     
-    @OneToMany(mappedBy="comentarioPadre")
+    @OneToMany(mappedBy="comentarioPadre", cascade = CascadeType.ALL, orphanRemoval=true)
     private transient Set<Comentario> subComentarios;
     
     @ManyToOne

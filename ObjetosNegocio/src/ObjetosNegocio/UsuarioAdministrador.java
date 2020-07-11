@@ -25,7 +25,7 @@ import javax.persistence.OneToMany;
 @DiscriminatorValue( value="UA" )
 public class UsuarioAdministrador extends Usuario {
     
-    @OneToMany(mappedBy = "usuarioAdministrador", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "usuarioAdministrador", cascade = CascadeType.ALL, orphanRemoval=true)
     private transient List<PostAnclado> postsAnclados;
     
     public UsuarioAdministrador(){

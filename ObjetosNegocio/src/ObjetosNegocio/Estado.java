@@ -27,7 +27,7 @@ public class Estado implements Serializable {
     @Column(name = "nombre", nullable = false)
     private String nombre;
     
-    @OneToMany(mappedBy = "estado", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "estado", cascade = CascadeType.ALL, orphanRemoval=true)
     private transient List<Municipio> municipios;
 
     public Estado() {

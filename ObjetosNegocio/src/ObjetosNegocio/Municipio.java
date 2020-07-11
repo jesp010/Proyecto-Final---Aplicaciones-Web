@@ -38,7 +38,7 @@ public class Municipio implements Serializable {
     @JoinColumn(name = "estado_id", nullable = false)
     private Estado estado;
     
-    @OneToMany(mappedBy = "municipio", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "municipio", orphanRemoval=true)
     private transient List<Usuario> usuarios;
 
     public Municipio() {

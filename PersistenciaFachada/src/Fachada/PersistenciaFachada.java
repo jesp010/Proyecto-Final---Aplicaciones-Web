@@ -107,4 +107,16 @@ public class PersistenciaFachada {
     public void saveDemoUsuarioAdmins() {
         usuario.saveDemoUsuarioAdmins();
     }
+    
+    public PostComun findComunByID(Integer id) {
+        return post.findComunByID(id);
+    }
+    
+    public ArrayList<Comentario> findAllPostComentarios(Integer postID) {
+        return comentario.findAllPostComentarios(postID);
+    }
+    
+    public boolean deleteComentario(Integer id) {
+        return comentario.delete(id);
+    }
 }

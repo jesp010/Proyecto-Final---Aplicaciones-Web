@@ -10,11 +10,14 @@ import Factoria.PersistenciaFachadaFactoria;
 import Fachada.PersistenciaFachada;
 import ObjetosNegocio.PostAnclado;
 import ObjetosNegocio.PostComun;
+import ObjetosNegocio.UsuarioAdministrador;
+import ObjetosNegocio.UsuarioNormal;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.PrintWriter;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -31,29 +34,47 @@ public class PostsServlet extends HttpServlet {
         PersistenciaFachada persistenciaFachada = PersistenciaFachadaFactoria.getPersistenciaFachada();
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
-        
+
         Gson gson = new GsonBuilder().excludeFieldsWithModifiers(Modifier.TRANSIENT).create();
 
-            if (action.equalsIgnoreCase("anclados")) {
-                ArrayList<PostAnclado> postsAnclados = persistenciaFachada.findAllPostAnclado();
-                String jsonPostsAnclados = gson.toJson(postsAnclados);
-                
-                try (PrintWriter out = response.getWriter()) {
-                    out.write(jsonPostsAnclados);
-                }
-            } else if (action.equalsIgnoreCase("comunes")){
-                ArrayList<PostComun> postsComunes = persistenciaFachada.findAllPostComun();
-                String jsonPostsComunes = gson.toJson(postsComunes);
+        if (action.equalsIgnoreCase("anclados")) {
+            ArrayList<PostAnclado> postsAnclados = persistenciaFachada.findAllPostAnclado();
+            String jsonPostsAnclados = gson.toJson(postsAnclados);
 
-                try (PrintWriter out = response.getWriter()) {
-                    out.write(jsonPostsComunes);
-                }
+            try (PrintWriter out = response.getWriter()) {
+                out.write(jsonPostsAnclados);
             }
+        } else if (action.equalsIgnoreCase("comunes")) {
+            ArrayList<PostComun> postsComunes = persistenciaFachada.findAllPostComun();
+            String jsonPostsComunes = gson.toJson(postsComunes);
+
+            try (PrintWriter out = response.getWriter()) {
+                out.write(jsonPostsComunes);
+            }
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("doPost");
+        String action = request.getParameter("action");
+        PersistenciaFachada persistenciaFachada = PersistenciaFachadaFactoria.getPersistenciaFachada();
+
+        if (action.equalsIgnoreCase("delete")) {
+             System.out.println("");
+        } else {
+            String titulo = request.getParameter("titulo");
+            String contenido = request.getParameter("contenido");
+            String tipoUsuario = request.getParameter("usertype");
+            String usuarioEmail = request.getParameter("usuarioemail");
+
+            if (tipoUsuario.equalsIgnoreCase("ObjetosNegocio.UsuarioAdministrador")) {
+                UsuarioAdministrador ua = persistenciaFachada.findAdminByEmail(usuarioEmail);
+                persistenciaFachada.saveAnclado(new PostAnclado(new Date(), titulo, contenido, ua, null));
+            } else {
+                UsuarioNormal un = persistenciaFachada.findNormalByEmail(usuarioEmail);
+                persistenciaFachada.saveComun(new PostComun(new Date(), titulo, contenido, un, null, null));
+            }
+        }
     }
 }

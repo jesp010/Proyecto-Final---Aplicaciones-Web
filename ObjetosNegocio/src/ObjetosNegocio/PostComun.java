@@ -27,7 +27,7 @@ public class PostComun extends Post {
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
     
-    @OneToMany(mappedBy = "postComun", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "postComun", cascade = CascadeType.ALL, orphanRemoval=true)
     private transient List<Comentario> comentarios;
     
     public PostComun(){
